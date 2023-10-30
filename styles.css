@@ -1,0 +1,30 @@
+/* Add your styles here */
+body {
+    background-color: azure;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #56c8d9;
+    color: #000000;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+.tab {
+    display: none;
+}
+
+h1, h2 {
+    color: #333;
+}
