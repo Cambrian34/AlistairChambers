@@ -7,3 +7,8 @@ function showTab(tabId) {
         tabToShow.style.display = 'block';
     }
 }
+function initPage() {
+    showTab('projects');
+}
+
+window.onload = initPage;
