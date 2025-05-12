@@ -1,70 +1,402 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-smooth">
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <script src="script.js"></script>
-    <title>Alistair Chambers - Resume</title>
-</head>
-<body>
-   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alistair Chambers - Personal Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Apply Inter font globally */
         body {
-            background-image: url('Images/background.jfif');
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar (optional) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        /* Active link styling for navbar */
+        .nav-link-active {
+            font-weight: 600;
+            color: #3b82f6; /* Tailwind blue-500 */
+        }
+        /* Simple loading spinner */
+        .loader {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3b82f6; /* Blue */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto; /* Center the loader */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
-    <header>
-        <h1>Alistair Chambers</h1>
-        <nav>
-            <ul>
-                <li><a href="javascript:void(0);" onclick="showTab('projects')">Projects</a></li>
-                <li><a href="javascript:void(0);" onclick="showTab('about')">About</a></li>
-                <li><a href="javascript:void(0);" onclick="showTab('contact')">Contact</a></li>
-                <li><a href="Assets/Alistair_Chambers_-_Resume.pdf">Resume</a></li>
-                <li><a href="javascript:void(0);" onclick="showTab('Verilog')">Verilog</a></li>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
 
-            </ul>
-        </nav>
+    <nav id="navbar" class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50 top-0 transition-all duration-300">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">Alistair Chambers</a>
+                
+                <div class="hidden md:flex space-x-4">
+                    <a href="#home" class="nav-link px-3 py-2 text-slate-700 hover:text-blue-600 rounded-md transition-colors">Home</a>
+                    <a href="#about" class="nav-link px-3 py-2 text-slate-700 hover:text-blue-600 rounded-md transition-colors">About</a>
+                    <a href="#experience" class="nav-link px-3 py-2 text-slate-700 hover:text-blue-600 rounded-md transition-colors">Experience</a>
+                    <a href="#projects" class="nav-link px-3 py-2 text-slate-700 hover:text-blue-600 rounded-md transition-colors">Projects</a>
+                    <a href="#skills" class="nav-link px-3 py-2 text-slate-700 hover:text-blue-600 rounded-md transition-colors">Skills</a>
+                    <a href="#contact" class="nav-link px-3 py-2 text-slate-700 hover:text-blue-600 rounded-md transition-colors">Contact</a>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-slate-700 hover:text-blue-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden mt-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-slate-700 hover:bg-blue-50 rounded-md transition-colors">Home</a>
+                <a href="#about" class="block px-3 py-2 text-slate-700 hover:bg-blue-50 rounded-md transition-colors">About</a>
+                <a href="#experience" class="block px-3 py-2 text-slate-700 hover:bg-blue-50 rounded-md transition-colors">Experience</a>
+                <a href="#projects" class="block px-3 py-2 text-slate-700 hover:bg-blue-50 rounded-md transition-colors">Projects</a>
+                <a href="#skills" class="block px-3 py-2 text-slate-700 hover:bg-blue-50 rounded-md transition-colors">Skills</a>
+                <a href="#contact" class="block px-3 py-2 text-slate-700 hover:bg-blue-50 rounded-md transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="min-h-screen bg-gradient-to-br from-blue-600 to-indigo-700 text-white flex items-center justify-center pt-16">
+        <div class="container mx-auto px-6 text-center">
+            <img src="https://placehold.co/150x150/FFFFFF/3B82F6?text=AC" alt="Alistair Chambers" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white shadow-lg">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm Alistair Chambers</h1>
+            <p class="text-xl md:text-2xl text-blue-100 mb-8">A Senior Computer Science Student at the University of Texas at San Antonio with a passion for Robotics, Machine Learning, and Software Engineering.</p>
+            <div class="space-x-4">
+                <a href="#projects" class="bg-white text-blue-600 font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-blue-50 transition-transform transform hover:scale-105">View Projects</a>
+                <a href="path/to/your/resume.pdf" target="_blank" class="border-2 border-white text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-white hover:text-blue-600 transition-transform transform hover:scale-105">My Resume</a>
+            </div>
+            <div class="mt-12 flex justify-center space-x-6">
+                <a href="https://github.com/Cambrian34" target="_blank" class="text-white hover:text-blue-200 transition-colors text-3xl" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/alistairchambers/" target="_blank" class="text-white hover:text-blue-200 transition-colors text-3xl" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                </div>
+        </div>
     </header>
-    <main>
 
-        <section id="projects" class="tab">
-            <h2>Projects</h2>
-            <ul>
-                <li><a href="https://github.com/Cambrian34/Snake-game">Snake Game- Remake</a></li>
-                <li><a href="https://cambrian34.github.io/Snake-game/">Snake Game- Website</a></li>
-                <li><a href="https://cambrian34.github.io/Imagetopdf/">Imagetopdf</a></li>
-                <li><a href="https://cambrian34.github.io/WebGames">WebGames</a></li>
-            </ul>
-        </section>
-       
-        <section id="about" class="tab">
-            <h2>About Me</h2>
-            <!-- Adding a readable background to the text -->
-            <div style="background-color: #f0f0f0; padding: 15px; border-radius: 5px;">
-                <p style="color: #333;">Hi, my name is Alistair Chambers and I am a student with experience in JAVA, C, MIPS ASSEMBLY, VERILOG, HTML, and JavaScript. I am passionate about creating simple games and have developed several games using JavaScript and JAVA.</p>
-                <p style="color: #333;">In my free time, I enjoy experimenting with new programming languages and technologies. I am always looking for new challenges and opportunities to learn.</p>
-                <p style="color: #333;">Check out my <a href="https://github.com/Cambrian34/">github</a> to see some of my work!</p>
+    <main>
+        <section id="about" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-800">About Me</h2>
+                <div class="max-w-3xl mx-auto text-lg text-slate-700 leading-relaxed space-y-6">
+                    <p>
+                        Hello! I'm Alistair Chambers, a highly motivated Computer Science undergraduate at the University of Texas at San Antonio (Expected Graduation: Dec 2025). I possess a strong foundation in software engineering principles and have gained hands-on experience in robotics, machine learning, and sensor fusion through independent research.
+                    </p>
+                    <p>
+                        I'm particularly fascinated by the intersection of hardware and software in autonomous systems. I enjoy tackling complex problems, devising algorithms, and building tangible solutions. My academic journey has equipped me with skills in various programming languages and development tools, and I'm always eager to learn and adapt to new technologies.
+                    </p>
+                    <p>
+                        I'm actively seeking opportunities to contribute to cutting-edge research projects where I can apply my problem-solving abilities and collaborate with innovative teams. Outside of academics, I've served in leadership roles in student organizations like ACM and the Cybersecurity Club, and I'm a member of the Robotics and Automation Society.
+                    </p>
+                </div>
             </div>
         </section>
-        
-        <section id="contact" class="tab">
-            <h2>Contact Me</h2>
-            <p>You can reach me at <a href="mailto:alicham6@gmail.com">alicham6@gmail.com</a>.</p>
-            <p>Check out my <a href=http://linkedin.com/in/alistairchambers>LinkedIn</a> </p>
-        </section>
-        <section id="Verilog" class="tab">
-            <h2>Verilog</h2>
-            <p>Verilog is a hardware description language used to model electronic systems. Below is an online Verilog compiler that you can use to write and run Verilog code.</p>
-            <p>I have attached a program in verilog that simulates a 16 bit mips cpu. Just press the copy button and paste it into jdoodle interface. Then scroll down and press the execute program button</p>
-            <div id="text"></div>
-            <button id="copy">Copy Text</button>
-            
-            <!-- gets data from -->
-            <script src="https://www.jdoodle.com/assets/jdoodle-pym.min.js" type="text/javascript"> </script>
-             <iframe src="https://www.jdoodle.com/embed/v1/2a526ce07b2bd697" width="100%" height="500" frameborder="0"></iframe>
 
+        <section id="experience" class="py-16 md:py-24 bg-slate-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-800">Research & Lab Experience</h2>
+                <div class="max-w-3xl mx-auto space-y-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <h3 class="text-2xl font-semibold text-blue-600 mb-2">Independent Study: Autonomous Robot Navigation</h3>
+                        <p class="text-slate-600 mb-1">University of Texas at San Antonio</p>
+                        <p class="text-sm text-slate-500 mb-3">Spring 2025</p>
+                        <p class="text-slate-700 mb-4">
+                            Conducted independent research and development of an autonomous robot capable of LiDAR-based navigation and vision-based object recognition.
+                        </p>
+                        <ul class="list-disc list-inside text-slate-700 space-y-2">
+                            <li>Designed and implemented a Python-based autonomous navigation system.</li>
+                            <li>Integrated LiDAR (using PyLidar3) for obstacle detection and mapping.</li>
+                            <li>Utilized a camera with MediaPipe and TensorFlow Lite for real-time image classification.</li>
+                            <li>Devised algorithms for sensor fusion (LiDAR & Camera), path planning, and motor control.</li>
+                            <li>Managed motor control via serial communication (Pyserial).</li>
+                            <li>Engineered a multithreaded software architecture for concurrent sensor data processing and decision-making.</li>
+                        </ul>
+                    </div>
+
+                     <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                        <h3 class="text-2xl font-semibold text-blue-600 mb-2">CS-CURE Research Proposal</h3>
+                        <p class="text-slate-600 mb-1">University of Texas at San Antonio</p>
+                        <p class="text-sm text-slate-500 mb-3">Spring 2025</p>
+                        <p class="text-slate-700 mb-4">
+                            Developed and submitted a research proposal titled "Bio-Inspired Resource-Aware Task Allocation in Swarm Explorative Robotics".
+                        </p>
+                        <ul class="list-disc list-inside text-slate-700 space-y-2">
+                            <li>Focused research on decentralized AI strategies for robot swarms.</li>
+                            <li>Investigated multi-sensor systems integration for enhanced environmental perception.</li>
+                            <li>Explored resource-aware algorithms for efficient task allocation in exploration scenarios.</li>
+                        </ul>
+                    </div>
+                    </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-800">My Projects</h2>
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div id="loading-projects" class="col-span-1 md:col-span-2 lg:col-span-3 text-center text-slate-600">
+                        <div class="loader"></div>
+                        <p>Loading projects from GitHub...</p>
+                    </div>
+                    <div id="error-projects" class="hidden col-span-1 md:col-span-2 lg:col-span-3 text-center text-red-600 bg-red-100 p-4 rounded-md">
+                        Could not load projects from GitHub. Please check the username or try again later.
+                    </div>
+                </div>
+                <p class="text-center mt-8 text-slate-600 text-sm">
+                    Projects dynamically loaded from <a href="https://github.com/Cambrian34" target="_blank" id="github-profile-link" class="text-blue-600 hover:underline">GitHub</a>.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="py-16 md:py-24 bg-slate-100">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-800">My Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4 flex items-center">
+                            <i class="fas fa-code mr-2"></i> Programming Languages
+                        </h3>
+                        <ul class="space-y-2 text-slate-700">
+                            <li>Python</li>
+                            <li>Java</li>
+                            <li>C</li>
+                            <li>Verilog HDL</li>
+                            <li>JavaScript</li>
+                            <li>Go</li>
+                            <li>C#</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4 flex items-center">
+                            <i class="fas fa-cogs mr-2"></i> Technical Skills
+                        </h3>
+                        <ul class="space-y-2 text-slate-700">
+                            <li><span class="font-medium">Robotics:</span> LiDAR Navigation, Obstacle Avoidance, Sensor Fusion (LiDAR/Camera), Motor Control</li>
+                            <li><span class="font-medium">ML/CV:</span> Image Classification (MediaPipe, TensorFlow Lite), Real-time Object Detection</li>
+                            <li><span class="font-medium">Software Eng:</span> OOP, Multithreading, Serial Communication (Pyserial), Git</li>
+                             <li><span class="font-medium">Hardware:</span> Raspberry Pi, Arduino</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <h3 class="text-xl font-semibold text-blue-600 mb-4 flex items-center">
+                            <i class="fas fa-tools mr-2"></i> Tools & Platforms
+                        </h3>
+                        <ul class="space-y-2 text-slate-700">
+                            <li>Git & GitHub</li>
+                            <li>Android Studio</li>
+                            <li>VS Code</li>
+                             <li>Linux/Unix environments</li>
+                            </ul>
+                    </div>
+                </div>
+                 <div class="text-center mt-10">
+                     <h3 class="text-xl font-semibold text-blue-600 mb-4">Certificates</h3>
+                     <p class="text-slate-700">Google Cybersecurity Certificate</p>
+                 </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16 md:py-24 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
+                <p class="text-lg text-blue-100 mb-8 max-w-xl mx-auto">
+                    I'm always open to discussing new projects, research opportunities, or just connecting with fellow tech enthusiasts. Feel free to reach out!
+                </p>
+                <a href="mailto:alicham6@gmail.com" class="inline-block bg-white text-blue-600 font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-blue-50 transition-transform transform hover:scale-105 text-lg">
+                    <i class="fas fa-envelope mr-2"></i> Email Me
+                </a>
+                 <p class="mt-4 text-blue-100">Phone: 860-770-1669</p>
+                <div class="mt-12 flex justify-center space-x-6">
+                    <a href="https://github.com/Cambrian34" target="_blank" class="text-white hover:text-blue-200 transition-colors text-3xl" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/alistairchambers/" target="_blank" class="text-white hover:text-blue-200 transition-colors text-3xl" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    </div>
+            </div>
         </section>
     </main>
+
+    <footer class="bg-slate-800 text-slate-300 py-8 text-center">
+        <div class="container mx-auto px-6">
+            <p>&copy; <span id="currentYear"></span> Alistair Chambers. All rights reserved.</p>
+            <p class="text-sm mt-1">Built with <a href="https://tailwindcss.com/" target="_blank" class="hover:text-blue-400 underline">Tailwind CSS</a>.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileNavLinks = mobileMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // --- Update Footer Year ---
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // --- Navbar Scroll Behavior & Active Link Highlighting ---
+        const navLinks = document.querySelectorAll('nav a[href^="#"]');
+        const sections = document.querySelectorAll('main section[id], header[id]'); 
+        const navbar = document.getElementById('navbar');
+
+        function updateActiveLink() {
+            let currentSectionId = 'home'; // Default to home
+            const scrollPosition = window.pageYOffset;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                // Trigger slightly before the section top for better UX
+                if (scrollPosition >= sectionTop - navbar.offsetHeight - 50) { 
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('nav-link-active');
+                // Check if the link's href matches the current section ID
+                const linkHref = link.getAttribute('href');
+                if (linkHref === `#${currentSectionId}`) {
+                    link.classList.add('nav-link-active');
+                }
+            });
+
+             // Change navbar style on scroll
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/95', 'shadow-lg');
+                navbar.classList.remove('bg-white/80');
+            } else {
+                navbar.classList.remove('bg-white/95', 'shadow-lg');
+                navbar.classList.add('bg-white/80');
+            }
+        }
+        
+        // Initial call and add scroll listener
+        updateActiveLink();
+        window.addEventListener('scroll', updateActiveLink);
+
+
+        // --- GitHub Projects Fetching ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Updated GitHub username from resume
+            const githubUsername = 'Cambrian34'; 
+            fetchGitHubProjects(githubUsername);
+
+            // Update the profile link in the footer as well
+            const profileLink = document.getElementById('github-profile-link');
+            if (profileLink) {
+                 profileLink.href = `https://github.com/${githubUsername}`;
+                 // Optional: Update text content if needed, e.g., profileLink.textContent = `${githubUsername} on GitHub`;
+            }
+        });
+
+        async function fetchGitHubProjects(username) {
+            const projectsGrid = document.getElementById('projects-grid');
+            const loadingIndicator = document.getElementById('loading-projects');
+            const errorIndicator = document.getElementById('error-projects');
+            // GitHub API endpoint for user repositories, sorted by push date (most recent first)
+            const apiUrl = `https://api.github.com/users/${username}/repos?sort=pushed&per_page=6`; // Fetch latest 6 pushed repos
+
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    // Handle HTTP errors like 404 Not Found
+                    throw new Error(`GitHub API error: ${response.status} ${response.statusText}`);
+                }
+                const repos = await response.json();
+
+                // Clear loading indicator
+                loadingIndicator.style.display = 'none'; 
+                errorIndicator.classList.add('hidden'); // Hide error message if previously shown
+
+                if (repos.length === 0) {
+                     projectsGrid.innerHTML = '<p class="col-span-1 md:col-span-2 lg:col-span-3 text-center text-slate-600">No public repositories found on GitHub.</p>';
+                     return;
+                }
+
+                // Populate grid with project cards
+                repos.forEach(repo => {
+                    // Skip forks if desired (optional)
+                    // if (repo.fork) { return; } 
+
+                    const projectCard = document.createElement('div');
+                    projectCard.className = 'bg-slate-50 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow flex flex-col';
+
+                    // Basic placeholder image - replace with actual project images if you have them
+                    // Using repo name in placeholder for differentiation
+                    const placeholderImageUrl = `https://placehold.co/600x400/E2E8F0/2D3748?text=${encodeURIComponent(repo.name)}`;
+
+                    projectCard.innerHTML = `
+                        <img src="${placeholderImageUrl}" alt="${repo.name}" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/E2E8F0/2D3748?text=Image+Error';">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl md:text-2xl font-semibold text-blue-600 mb-2 truncate" title="${repo.name}">${repo.name}</h3>
+                            <p class="text-slate-700 mb-4 flex-grow text-sm">
+                                ${repo.description || 'No description provided.'} 
+                            </p>
+                            ${repo.language ? `<p class="text-xs text-slate-500 mb-4"><strong>Primary Language:</strong> ${repo.language}</p>` : ''}
+                            <div class="mt-auto flex flex-wrap gap-2"> <a href="${repo.html_url}" target="_blank" class="inline-block bg-slate-700 text-white px-4 py-2 rounded-md hover:bg-slate-800 transition-colors text-sm">
+                                    <i class="fab fa-github mr-1"></i> View on GitHub
+                                </a>
+                                ${repo.homepage ? `
+                                <a href="${repo.homepage}" target="_blank" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors text-sm">
+                                    <i class="fas fa-external-link-alt mr-1"></i> Live Demo
+                                </a>` : ''}
+                            </div>
+                        </div>
+                    `;
+                    projectsGrid.appendChild(projectCard);
+                });
+
+            } catch (error) {
+                console.error('Error fetching GitHub projects:', error);
+                // Display error message to the user
+                loadingIndicator.style.display = 'none'; 
+                errorIndicator.classList.remove('hidden');
+                errorIndicator.textContent = `Could not load projects: ${error.message}. Please check the username or try again later.`;
+            }
+        }
+
+    </script>
 </body>
 </html>
-
